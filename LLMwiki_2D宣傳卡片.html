@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLMwiki 團隊知識庫推廣海報</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;900&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --panel: #131b2e;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-purple: #8b5cf6;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans TC', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.15), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.15), transparent 40%);
+    }
+
+    .poster-container {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(19, 27, 46, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+                  0 0 30px rgba(6, 182, 212, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poster-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+    }
+
+    /* Header Section */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--accent-cyan);
+      padding: 0.4rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .main-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 30%, #a5f3fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+    }
+
+    .sub-title {
+      color: var(--muted);
+      font-size: 1.15rem;
+      font-weight: 400;
+    }
+
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .main-title { font-size: 2.2rem; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(6, 182, 212, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-full {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 768px) {
+      .card-full { grid-column: span 1; }
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .num-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .c-blue .num-badge { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .c-purple .num-badge { background: rgba(139, 92, 246, 0.2); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3); }
+    .c-emerald .num-badge { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .c-amber .num-badge { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .c-cyan .num-badge { background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-content {
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .highlight-box {
+      background: rgba(6, 182, 212, 0.08);
+      border-left: 3px solid var(--accent-cyan);
+      padding: 0.75rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 0.75rem;
+      font-family: monospace;
+      font-size: 0.95rem;
+      color: #38bdf8;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .contact-btn {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      color: #0f172a;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="poster-container">
+    
+    <div class="header">
+      <div class="badge-top">✨ LLMWIKI KNOWLEDGE BASE</div>
+      <h1 class="main-title">LLMwiki 團隊知識庫 正式上線！</h1>
+      <p class="sub-title">打造 AI 協作新體驗 ‧ 輕鬆探索 ‧ 快捷提問 ‧ 經驗持續傳承</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- Card 1 -->
+      <div class="card c-blue">
+        <div class="card-header">
+          <div class="num-badge">1</div>
+          <div class="card-title">三神器環境準備</div>
+        </div>
+        <div class="card-content">
+          請先確保電腦已準備好關鍵三大工具：
+          <div class="tag-list">
+            <span class="tag">🤖 Claude Code</span>
+            <span class="tag">📦 Git</span>
+            <span class="tag">📝 Obsidian</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card c-purple">
+        <div class="card-header">
+          <div class="num-badge">2</div>
+          <div class="card-title">版本同步與首次設定</div>
+        </div>
+        <div class="card-content">
+          • <b>舊用戶</b>：請直接執行 <code>git pull</code> 最新版。若遇衝突，放手讓 Claude 自動解！<br/>
+          • <b>新用戶</b>：首次使用請聯繫 <b>兔兔</b> 協助配置個人資料夾。
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card c-cyan">
+        <div class="card-header">
+          <div class="num-badge">3</div>
+          <div class="card-title">SKILL 網頁清單查詢</div>
+        </div>
+        <div class="card-content">
+          提供團隊專屬 SKILL 視覺化網頁清單，隨時隨地線上檢索所有自動化工具與秘籍庫！
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card c-emerald">
+        <div class="card-header">
+          <div class="num-badge">4</div>
+          <div class="card-title">打 start 快速引導</div>
+        </div>
+        <div class="card-content">
+          在 Terminal 中輸入 <code>start</code> 即可啟動互動導覽，了解知識庫如何神助攻你的日常工作！
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card c-amber">
+        <div class="card-header">
+          <div class="num-badge">5</div>
+          <div class="card-title">SKILL 使用與迭代更新</div>
+        </div>
+        <div class="card-content">
+          鼓勵大家在使用 SKILL 時進行優化，完成實戰升級後，請記得將最新版本同步更新回知識庫！
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card c-blue">
+        <div class="card-header">
+          <div class="num-badge">6</div>
+          <div class="card-title">自動化智慧 Q&A 提問</div>
+        </div>
+        <div class="card-content">
+          遇到困難直接對 Claude 說：
+          <div class="highlight-box">
+            「幫我在知識庫詢問 [您的問題]」
+          </div>
+          Claude 將自動解析並為您在表單上完成提問！
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card c-purple">
+        <div class="card-header">
+          <div class="num-badge">7</div>
+          <div class="card-title">問題集刷新機制</div>
+        </div>
+        <div class="card-content">
+          建議大家自行安排問題集刷新時間間隔（推薦設定：<b>1 小時</b>），隨時掌握最新解答！
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card c-emerald">
+        <div class="card-header">
+          <div class="num-badge">8</div>
+          <div class="card-title">共享你的專屬工具庫</div>
+        </div>
+        <div class="card-content">
+          獨樂樂不如眾樂樂！請將自己開發或常用的好用工具也同步上傳至知識庫，與團隊一起變強！
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div>📍 線上研二 3D 美術組 ‧ LLMwiki 知識庫推廣</div>
+      <a href="#" class="contact-btn">🚀 立即開啟 Claude 開始體驗</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
